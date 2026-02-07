@@ -69,7 +69,33 @@ def extract_next_links(url, resp):
     #         resp.raw_response.url: the url, again
     #         resp.raw_response.content: the content of the page!
     # Return a list with the hyperlinks (as strings) scrapped from resp.raw_response.content
-    return list()
+
+    # Checks if the response is successful and contains data before processing
+    if resp.status != 200 or not resp.raw_response or not resp.raw_response.content:
+        return list()
+
+    found_urls = set()
+
+    # Uses BeautifulSoup with lxml to parse the HTML, resolve relative paths,
+    # and removes fragments to ensure unique URL tracking.
+    try:
+        soup = BeautifulSoup(resp.raw_response.content, "lxml")
+
+        # Converts relative paths into absolute URLs using the base page URL
+        for link in soup.find_all('a', href=True):
+            absolute_url = urljoin(url, link['href'])
+
+            # Remove URL fragments to ensure we don't crawl the same page multiple times
+            clean_url, _ = urldefrag(absolute_url)
+
+            found_urls.add(clean_url)
+
+    # Logs parsing errors and return an empty list for this specific page
+    except Exception as e:
+        print(f"Error parsing content for {url}: {e}")
+        return list()
+
+    return list(found_urls)
 
 
 def is_valid(url):
