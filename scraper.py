@@ -121,7 +121,31 @@ def is_valid(url):
         for folder in path_parts:
             if path_parts.count(folder) >= 3:
                 return False
-                
+        
+        if len(url) > 250:
+            return False
+        
+        query_params = parse_qs(parsed.query)
+        
+        trap_params = ['date', 'cal', 'calendar', 'share', 'replytocom', 'action', 'print']
+        if any(param in query_params for param in trap_params):
+            return False
+        
+        if len(query_params) > 5:
+            return False
+        
+        trap_patterns = [
+            r'/calendar/',
+            r'/wp-json/',
+            r'/feed/',
+            r'/print/',
+            r'/download/',
+            r'/wp-content/uploads/',
+        ]
+        
+        if any(re.search(pattern, parsed.path.lower()) for pattern in trap_patterns):
+            return False
+         
         return not re.match(
             r".*\.(css|js|bmp|gif|jpe?g|ico"
             + r"|png|tiff?|mid|mp2|mp3|mp4"
