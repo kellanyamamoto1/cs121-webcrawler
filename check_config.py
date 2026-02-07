@@ -7,6 +7,8 @@ def check_config():
     print("=" * 80)
     print("PRE-FLIGHT CONFIGURATION CHECKER")
     print("=" * 80)
+
+    #will make list of errors
     
     errors = []
     warnings = []
