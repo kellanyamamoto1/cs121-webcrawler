@@ -25,6 +25,22 @@ def is_valid(url):
         parsed = urlparse(url)
         if parsed.scheme not in set(["http", "https"]):
             return False
+
+        allowed_domains = [
+            "ics.uci.edu", 
+            "cs.uci.edu", 
+            "informatics.uci.edu", 
+            "stat.uci.edu"
+        ]
+
+        if not any(parsed.netloc.endswith(domain) for domain in allowed_domains):
+            return False
+
+        path_parts = [part for part in parsed.path.split('/') if part]
+        for folder in path_parts:
+            if path_parts.count(folder) >= 3:
+                return False
+                
         return not re.match(
             r".*\.(css|js|bmp|gif|jpe?g|ico"
             + r"|png|tiff?|mid|mp2|mp3|mp4"
@@ -38,3 +54,4 @@ def is_valid(url):
     except TypeError:
         print ("TypeError for ", parsed)
         raise
+
