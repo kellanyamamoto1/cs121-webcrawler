@@ -73,35 +73,77 @@ def extract_next_links(url, resp):
     # Checks if the response is successful and contains data before processing
     if resp.status != 200 or not resp.raw_response or not resp.raw_response.content:
         return list()
+    
+    content = resp.raw_response.content
+    if len(content) > 5 * 1024 * 1024:  # 5MB limit
+        print(f"Skipping large file: {url} ({len(content)} bytes)")
+        return list()
 
     found_urls = set()
 
     # Uses BeautifulSoup with lxml to parse the HTML, resolve relative paths,
     # and removes fragments to ensure unique URL tracking.
     try:
-        soup = BeautifulSoup(resp.raw_response.content, "lxml")
+        soup = BeautifulSoup(content, "lxml")
+        
+        # Remove script, style, and other non-content elements for text extraction
+        for element in soup(["script", "style", "meta", "link", "noscript"]):
+            element.decompose()
+        
+        # Extract text content for analytics
+        text = soup.get_text(separator=' ', strip=True)
+        
+        words = re.findall(r'\b[a-z]{2,}\b', text.lower())
+        
+        # Filter out stop words
+        filtered_words = [w for w in words if w not in STOP_WORDS]
+        
+        if len(filtered_words) < 50:
+            print(f"Low information content: {url} ({len(filtered_words)} words)")
+            return list()
+        
+        # === ANALYTICS COLLECTION ===
+        
+        # Defragment URL for uniqueness tracking
+        defragged_url, _ = urldefrag(url)
+        analytics['unique_pages'].add(defragged_url)
+        
+        # Track word count for this page
+        word_count = len(filtered_words)
+        analytics['word_counts'][defragged_url] = word_count
+        
+        analytics['all_words'].update(filtered_words)
+        
+        if word_count > analytics['longest_page']['word_count']:
+            analytics['longest_page'] = {
+                'url': defragged_url,
+                'word_count': word_count
+            }
+        
+        parsed = urlparse(url)
+        if parsed.netloc.endswith('.uci.edu'):
+            analytics['subdomains'][parsed.netloc] += 1
+        
 
-        # Converts relative paths into absolute URLs using the base page URL
+        if len(analytics['unique_pages']) % 100 == 0:
+            save_analytics(analytics)
+            print(f"Progress: {len(analytics['unique_pages'])} unique pages crawled")
+
+
         for link in soup.find_all('a', href=True):
             absolute_url = urljoin(url, link['href'])
-
-            # Remove URL fragments to ensure we don't crawl the same page multiple times
             clean_url, _ = urldefrag(absolute_url)
 
             found_urls.add(clean_url)
 
-    # Logs parsing errors and return an empty list for this specific page
     except Exception as e:
         print(f"Error parsing content for {url}: {e}")
         return list()
 
     return list(found_urls)
 
-
 def is_valid(url):
-    # Decide whether to crawl this url or not. 
-    # If you decide to crawl it, return True; otherwise return False.
-    # There are already some conditions that return False.
+
     try:
         parsed = urlparse(url)
         if parsed.scheme not in set(["http", "https"]):
@@ -203,4 +245,8 @@ def generate_report():
     
     print(report_text)
     print("\nReport saved to REPORT.txt")
+
+if __name__ == "__main__":
+    analytics = load_analytics()
+    generate_report()
 
