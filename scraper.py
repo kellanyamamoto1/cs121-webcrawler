@@ -131,7 +131,13 @@ def extract_next_links(url, resp):
 
 
         for link in soup.find_all('a', href=True):
-            absolute_url = urljoin(url, link['href'])
+            href = link['href'].strip()
+            
+            # Skip empty hrefs, javascript, mailto, etc.
+            if not href or href == '#' or href.startswith(('javascript:', 'mailto:', 'tel:')):
+                continue
+            
+            absolute_url = urljoin(url, href)
             clean_url, _ = urldefrag(absolute_url)
 
             found_urls.add(clean_url)
