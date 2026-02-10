@@ -8,6 +8,8 @@ import os
 
 """
 Kellan Yamamoto, 28388886
+Ken Gabriel Mayeaux, 64281468
+
 
 """
 
@@ -358,4 +360,5 @@ def generate_report():
 if __name__ == "__main__":
     analytics = load_analytics()
     generate_report()
+
 
