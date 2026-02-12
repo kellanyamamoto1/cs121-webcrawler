@@ -1,0 +1,138 @@
+================================================================================
+WEB CRAWLER REPORT
+================================================================================
+
+1. Number of unique pages found: 63400
+
+2. Longest page (by word count):
+   URL: https://grape.ics.uci.edu/wiki/public/raw-attachment/wiki/cs221-2019-spring-project2/Team2StressTest.txt
+   Word count: 56889
+
+3. 50 most common words:
+    1. data                 - 1635501 occurrences
+    2. systems              - 760815 occurrences
+    3. isg                  - 723952 occurrences
+    4. uci                  - 720744 occurrences
+    5. ics                  - 710484 occurrences
+    6. edu                  - 591572 occurrences
+    7. research             - 583481 occurrences
+    8. america              - 583147 occurrences
+    9. tzid                 - 577477 occurrences
+   10. vevent               - 561400 occurrences
+   11. pm                   - 529798 occurrences
+   12. dbh                  - 510835 occurrences
+   13. end                  - 485955 occurrences
+   14. science              - 466765 occurrences
+   15. query                - 453684 occurrences
+   16. events               - 418425 occurrences
+   17. will                 - 418157 occurrences
+   18. begin                - 387995 occurrences
+   19. computer             - 378447 occurrences
+   20. university           - 372375 occurrences
+   21. database             - 368996 occurrences
+   22. event                - 367457 occurrences
+   23. dtstart              - 345392 occurrences
+   24. https                - 337078 occurrences
+   25. location             - 310182 occurrences
+   26. abstract             - 303302 occurrences
+   27. url                  - 300368 occurrences
+   28. last                 - 292235 occurrences
+   29. created              - 290489 occurrences
+   30. summary              - 285961 occurrences
+   31. modified             - 283927 occurrences
+   32. description          - 281399 occurrences
+   33. uid                  - 280721 occurrences
+   34. dtend                - 280700 occurrences
+   35. dtstamp              - 280700 occurrences
+   36. based                - 266473 occurrences
+   37. uc                   - 264749 occurrences
+   38. award                - 251591 occurrences
+   39. applications         - 249349 occurrences
+   40. processing           - 246269 occurrences
+   41. talk                 - 234302 occurrences
+   42. distributed          - 232999 occurrences
+   43. information          - 230260 occurrences
+   44. fri                  - 228489 occurrences
+   45. irvine               - 226836 occurrences
+   46. using                - 221803 occurrences
+   47. can                  - 217686 occurrences
+   48. blockchain           - 212400 occurrences
+   49. analytics            - 208245 occurrences
+   50. system               - 206412 occurrences
+
+4. Subdomains in uci.edu domain:
+   accessibility.ics.uci.edu, 6
+   archive-beta.ics.uci.edu, 10
+   archive.ics.uci.edu, 196
+   asterix.ics.uci.edu, 6
+   cert.ics.uci.edu, 10
+   chenli.ics.uci.edu, 10
+   cloudberry.ics.uci.edu, 42
+   cml.ics.uci.edu, 2
+   code.ics.uci.edu, 5
+   computableplant.ics.uci.edu, 25
+   courselisting.ics.uci.edu, 1
+   cs.ics.uci.edu, 4
+   cyberclub.ics.uci.edu, 9
+   dale-cooper-v0.ics.uci.edu, 64
+   dgillen.ics.uci.edu, 32
+   ds4all.ics.uci.edu, 5
+   duttgroup.ics.uci.edu, 129
+   dynamo.ics.uci.edu, 26
+   elms.ics.uci.edu, 1
+   emj.ics.uci.edu, 8
+   flamingo.ics.uci.edu, 11
+   fr.ics.uci.edu, 1
+   frost.ics.uci.edu, 1
+   grape.ics.uci.edu, 352
+   graphics.ics.uci.edu, 1
+   hobbes.ics.uci.edu, 11
+   hpi.ics.uci.edu, 3
+   hub.ics.uci.edu, 3
+   i-sensorium.ics.uci.edu, 5
+   icde2023.ics.uci.edu, 46
+   ics.uci.edu, 990
+   informatics.uci.edu, 2
+   ipubmed.ics.uci.edu, 1
+   isg.ics.uci.edu, 29935
+   jdsylab.physics.uci.edu, 16
+   jgarcia.ics.uci.edu, 33
+   mailman.ics.uci.edu, 30
+   malek.ics.uci.edu, 1
+   mcs.ics.uci.edu, 12
+   mds.ics.uci.edu, 2
+   mover.ics.uci.edu, 23
+   mswe.ics.uci.edu, 4
+   nalini.ics.uci.edu, 2
+   ngs.ics.uci.edu, 282
+   physics.uci.edu, 439
+   psearch.ics.uci.edu, 1
+   scale.ics.uci.edu, 6
+   seal.ics.uci.edu, 46
+   sherlock.ics.uci.edu, 6
+   speedtest.ics.uci.edu, 1
+   staging-hub.ics.uci.edu, 2
+   stairs.ics.uci.edu, 2
+   stat.ics.uci.edu, 11
+   stat.uci.edu, 2
+   statistics-stage.ics.uci.edu, 10
+   summeracademy.ics.uci.edu, 4
+   swiki.ics.uci.edu, 4168
+   tad.ics.uci.edu, 2
+   tastier.ics.uci.edu, 1
+   unite.ics.uci.edu, 10
+   vision.ics.uci.edu, 162
+   wics.ics.uci.edu, 18398
+   wiki.ics.uci.edu, 5646
+   www-db.ics.uci.edu, 2
+   www.cecs.uci.edu, 36
+   www.cs.uci.edu, 1
+   www.ics.uci.edu, 1419
+   www.informatics.ics.uci.edu, 1
+   www.informatics.uci.edu, 60
+   www.nacs.uci.edu, 1
+   www.physics.uci.edu, 567
+   www.stat.uci.edu, 35
+   xtune.ics.uci.edu, 3
+
+================================================================================
